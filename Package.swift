@@ -11,13 +11,18 @@ let package = Package(
             targets: ["TagField"]),
     ],
     dependencies: [
-        .package(url: "git@github.com:saramah/HashRainbow.git", branch: "main"),
+        .package(url: "https://github.com/inseven/licensable", from: "0.0.13"),
+        .package(url: "https://github.com/saramah/HashRainbow", branch: "main"),
     ],
     targets: [
         .target(
             name: "TagField",
             dependencies: [
                 .product(name: "HashRainbow", package: "HashRainbow"),
+                .product(name: "Licensable", package: "licensable"),
+            ],
+            resources: [
+                .process("Resources"),
             ]),
         .testTarget(
             name: "TagFieldTests",

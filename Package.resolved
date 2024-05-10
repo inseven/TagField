@@ -1,13 +1,22 @@
 {
-  "originHash" : "677533e8388828b265f1517e53abe355d6be8f731b6f113459d093f4aa107484",
+  "originHash" : "604a730a5c05f818aed28f76b3300ff65f05d93ef72ea1a21f0fc7748006e6a1",
   "pins" : [
     {
       "identity" : "hashrainbow",
       "kind" : "remoteSourceControl",
-      "location" : "git@github.com:saramah/HashRainbow.git",
+      "location" : "https://github.com/saramah/HashRainbow",
       "state" : {
         "branch" : "main",
         "revision" : "3eb3d2ce3b3fce35bcde312ed074a9c237d714ab"
+      }
+    },
+    {
+      "identity" : "licensable",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/inseven/licensable",
+      "state" : {
+        "revision" : "a8ad62c6fde5aca29a47459b0687e580eee203dd",
+        "version" : "0.0.13"
       }
     }
   ],
