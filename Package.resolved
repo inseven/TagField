@@ -1,0 +1,15 @@
+{
+  "originHash" : "677533e8388828b265f1517e53abe355d6be8f731b6f113459d093f4aa107484",
+  "pins" : [
+    {
+      "identity" : "hashrainbow",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:saramah/HashRainbow.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3eb3d2ce3b3fce35bcde312ed074a9c237d714ab"
+      }
+    }
+  ],
+  "version" : 3
+}
