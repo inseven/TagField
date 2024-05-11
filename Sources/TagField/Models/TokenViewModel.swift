@@ -21,14 +21,6 @@
 import Combine
 import SwiftUI
 
-//import Interact
-
-extension String {
-    public func containsWhitespaceAndNewlines() -> Bool {
-        return rangeOfCharacter(from: .whitespacesAndNewlines) != nil
-    }
-}
-
 class TokenViewModel: ObservableObject {
 
     struct Token: Identifiable {
@@ -48,6 +40,8 @@ class TokenViewModel: ObservableObject {
     @Published var input: String = ""
     @Published var suggestions: [String] = []
 
+    private let separators: CharacterSet = .whitespacesAndNewlines.union([","])
+    
     let suggestion: (String, [String], Int) -> [String]
     var cancellables: [AnyCancellable] = []
 
@@ -58,11 +52,15 @@ class TokenViewModel: ObservableObject {
             .map { Token($0) }
     }
 
+    private func containsSeparator(_ string: String) -> Bool {
+        return string.rangeOfCharacter(from: separators) != nil
+    }
+
     func start() {
 
         $input
             .receive(on: DispatchQueue.main)
-            .filter { $0.containsWhitespaceAndNewlines() }
+            .filter { self.containsSeparator($0) }
             .sink { [weak self] tags in
                 guard let self else { return }
                 self.commit()
@@ -92,11 +90,19 @@ class TokenViewModel: ObservableObject {
 
     func commit() {
         let tags = input
-            .components(separatedBy: .whitespacesAndNewlines)
+            .components(separatedBy: separators)
             .filter { !$0.isEmpty }
-        for tag in tags {
+
+        // Filter out the existing tags.
+        let current = Set(self.items.map({ $0.text }))
+        let newTags = tags.filter({ !current.contains($0) })
+
+        // Add the new tags.
+        for tag in newTags {
             self.items.append(Token(tag))
         }
+
+        // Reset the input field.
         input = ""
     }
 
