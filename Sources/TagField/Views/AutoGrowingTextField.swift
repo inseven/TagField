@@ -4,6 +4,8 @@
 // CC BY-SA 4.0
 // https://creativecommons.org/licenses/by-sa/4.0/
 
+#if os(macOS)
+
 import AppKit
 
 class AutoGrowingTextField: NSTextField {
@@ -96,3 +98,5 @@ class AutoGrowingTextField: NSTextField {
         return newSize
     }
 }
+
+#endif
