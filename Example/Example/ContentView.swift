@@ -24,11 +24,13 @@ import TagField
 
 struct ContentView: View {
 
-    @State var tags: [String] = []
+    @State var tags1: [String] = []
+    @State var tags2: [String] = []
 
     var body: some View {
         VStack {
-            TokenView("Add tags...", tokens: $tags)
+            TokenView("Add tags...", tokens: $tags1)
+            TokenView("Add tags...", tokens: $tags2)
         }
         .padding()
     }
