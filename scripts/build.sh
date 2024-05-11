@@ -13,8 +13,7 @@ cd "$ROOT_DIRECTORY"
 
 xcodebuild -scheme TagField -showdestinations
 xcodebuild -scheme TagField -destination "platform=macOS" clean build
-# xcodebuild -scheme TagField -destination "platform=iOS Simulator,name=iPhone 14 Pro" clean build
-
+xcodebuild -scheme TagField -destination "platform=iOS Simulator,name=iPhone 14 Pro" clean build
 
 # Build the example project.
 
