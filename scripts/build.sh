@@ -20,4 +20,13 @@ xcodebuild -scheme TagField -destination "platform=macOS" clean build
 
 cd "$ROOT_DIRECTORY/Example"
 
-xcodebuild -scheme Example -configuration Debug build
+# N.B. We skip code-signing to allow us to sign without a development certificate; this is fine for builds but wouldn't
+# allow us to run the app for local testing.
+xcodebuild \
+    -scheme Example \
+    CODE_SIGN_IDENTITY="" \
+    CODE_SIGNING_REQUIRED=NO \
+    CODE_SIGNING_ALLOWED=NO \
+    -configuration \
+    Debug \
+    build
