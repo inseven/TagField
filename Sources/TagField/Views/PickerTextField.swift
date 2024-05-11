@@ -57,7 +57,12 @@ struct PickerTextField: NSViewRepresentable {
                 }
                 parent.onDelete()
                 return true
-            } else if event.keyCode == kVK_Return || event.keyCode == kVK_Tab {
+            } else if event.keyCode == kVK_Return {
+                parent.onCommit()
+                return true
+            } else if event.keyCode == kVK_Tab && !textView.string.isEmpty {
+                // Swallow the tab event only if it represents a completion on an editing string. Otherwise, let it
+                // through to allow the user to tab between different UI elements.
                 parent.onCommit()
                 return true
             }
