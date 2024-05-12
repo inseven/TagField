@@ -21,7 +21,7 @@
 import Combine
 import SwiftUI
 
-public struct TokenView: View {
+public struct TagField: View {
 
 #if os(iOS)
     enum SheetType: Identifiable {

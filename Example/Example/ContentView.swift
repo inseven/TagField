@@ -29,8 +29,8 @@ struct ContentView: View {
 
     var body: some View {
         Form {
-            TokenView("Add tags...", tokens: $tags1)
-            TokenView("Add tags...", tokens: $tags2)
+            TagField("Add tags...", tokens: $tags1)
+            TagField("Add tags...", tokens: $tags2)
         }
     }
 }
