@@ -22,8 +22,6 @@
 
 import SwiftUI
 
-//import Interact
-
 public struct PhoneEditTagsView: View {
 
     private enum Field {
@@ -57,8 +55,9 @@ public struct PhoneEditTagsView: View {
             .listStyle(.plain)
             .overlay {
                 if tags.isEmpty {
-                    Text("No Tags")
-//                    PlaceholderView("No Tags")
+                    ContentUnavailableView {
+                        Text("No Tags")
+                    }
                 }
             }
             .safeAreaInset(edge: .bottom) {
