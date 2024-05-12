@@ -91,8 +91,8 @@ public struct TokenView: View {
                 sheet = .addTag
             } label: {
                 if !tokens.isEmpty {
-                    WrappingHStack(alignment: .leading) {
-                        ForEach(tokens.sorted()) { tag in
+                    TagViewLayout(spacing: 0) {
+                        ForEach(tokens.sorted(), id: \.self) { tag in
                             TagView(tag)
                         }
                     }
@@ -108,13 +108,18 @@ public struct TokenView: View {
                 PhoneEditTagsView(tokenViewModel: model, tags: $tokens)
             }
         }
-        .runs(model)
-        .onChange(of: tokens) { tokens in
+        .onAppear {
+            model.start()
+        }
+        .onDisappear {
+            model.stop()
+        }
+        .onChange(of: tokens) { oldValue, newValue in
             // I find it really hard to believe that this is the idiomatic way of bidirectional binding.
-            guard model.items.map({ $0.text }) != tokens else {
+            guard model.items.map({ $0.text }) != newValue else {
                 return
             }
-            model.items = tokens.map({ TokenViewModel.Token($0) })
+            model.items = newValue.map({ TokenViewModel.Token($0) })
         }
 #endif
     }

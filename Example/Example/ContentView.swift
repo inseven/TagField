@@ -28,11 +28,10 @@ struct ContentView: View {
     @State var tags2: [String] = []
 
     var body: some View {
-        VStack {
+        Form {
             TokenView("Add tags...", tokens: $tags1)
             TokenView("Add tags...", tokens: $tags2)
         }
-        .padding()
     }
 }
 
