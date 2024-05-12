@@ -38,7 +38,7 @@ public struct TagField: View {
 
     @Binding var tokens: [String]
 
-    let suggestion: (String, [String], Int) -> [String]
+    let suggestion: (String, [String]) -> [String]
 
     @StateObject var model: TokenViewModel
 #if os(iOS)
@@ -47,7 +47,7 @@ public struct TagField: View {
 
     public init(_ prompt: String,
                 tokens: Binding<[String]>,
-                suggestion: @escaping (String, [String], Int) -> [String] = { _, _, _ in [] } ) {
+                suggestion: @escaping (String, [String]) -> [String] = { _, _ in [] } ) {
         self.prompt = prompt
         _tokens = tokens
         self.suggestion = suggestion
@@ -66,7 +66,7 @@ public struct TagField: View {
                 } onDelete: {
                     model.deleteBackwards()
                 } suggestion: { candidate in
-                    return suggestion(candidate, model.items.map({ $0.text }), 1)
+                    return suggestion(candidate, model.items.map({ $0.text }))
                 }
                 .padding([.top, .bottom], 4)
             }

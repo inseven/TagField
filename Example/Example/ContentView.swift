@@ -24,12 +24,23 @@ import TagField
 
 struct ContentView: View {
 
+    let examples = [
+        "one",
+        "two",
+        "three",
+    ]
+
     @State var tags1: [String] = []
     @State var tags2: [String] = []
 
     var body: some View {
         Form {
-            TagField("Add tags...", tokens: $tags1)
+            TagField("Add tags...", tokens: $tags1) { candidate, tags in
+                let current = Set(tags)
+                return examples
+                    .filter{ !current.contains($0) }
+                    .filter { $0.starts(with: candidate) }
+            }
             TagField("Add tags...", tokens: $tags2)
         }
     }
