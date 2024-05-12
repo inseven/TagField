@@ -1,4 +1,7 @@
 # TagField
+
+[![build](https://github.com/jbmorley/TagField/actions/workflows/build.yaml/badge.svg)](https://github.com/jbmorley/TagField/actions/workflows/build.yaml)
+
 SwiftUI tag field for macOS and iOS
 
 ## License
