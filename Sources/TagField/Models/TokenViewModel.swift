@@ -42,10 +42,10 @@ class TokenViewModel: ObservableObject {
 
     private let separators: CharacterSet = .whitespacesAndNewlines.union([","])
     
-    let suggestion: (String, [String], Int) -> [String]
+    let suggestion: (String, [String]) -> [String]
     var cancellables: [AnyCancellable] = []
 
-    init(tokens: Binding<[String]>, suggestion: @escaping (String, [String], Int) -> [String]) {
+    init(tokens: Binding<[String]>, suggestion: @escaping (String, [String]) -> [String]) {
         self._tokens = tokens
         self.suggestion = suggestion
         self.items = tokens.wrappedValue
@@ -71,7 +71,7 @@ class TokenViewModel: ObservableObject {
             .combineLatest($items)
             .receive(on: DispatchQueue.main)
             .map { [suggestion] input, items in
-                return suggestion(input, items.map({ $0.text }), 8)
+                return suggestion(input, items.map({ $0.text }))
             }
             .assign(to: \.suggestions, on: self)
             .store(in: &cancellables)
