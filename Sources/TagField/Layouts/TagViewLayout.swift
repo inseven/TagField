@@ -100,7 +100,6 @@ struct TagViewLayout: Layout {
             let rowHeight = row.map({ $1.height }).reduce(0.0, max)
             var posX = bounds.minX
             for (subview, size) in row {
-//                let baselineOffset = subview.dimensions(in: ProposedViewSize(size))[.firstTextBaseline]
                 subview.place(at: CGPoint(x: posX, y: posY + rowHeight),
                               anchor: .bottomLeading,
                               proposal: ProposedViewSize(size))
