@@ -40,12 +40,12 @@ fileprivate let hashRainbowLicense = License(id: "https://github.com/saramah/Has
                                                      title: "GitHub"),
                                                ])
 
-fileprivate let tagFieldLicense = License(id: "https://github.com/inseven/TagField",
+fileprivate let tagFieldLicense = License(id: "https://github.com/jbmorley/TagField",
                                           name: "TagField",
                                           author: "Jason Morley",
                                           text: String(contentsOfResource: "tagfield-license"),
                                           attributes: [
-                                            .url(URL(string: "https://github.com/inseven/thoughts")!, title: "GitHub"),
+                                            .url(URL(string: "https://github.com/jbmorley/TagField")!, title: "GitHub"),
                                           ],
                                           licenses: [
                                             .licensable,
