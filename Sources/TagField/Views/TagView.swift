@@ -28,6 +28,19 @@ public struct TagView: View {
         static let cornerRadius = 4.0
     }
 
+    private struct TagClipShapeModifier: ViewModifier {
+
+        func body(content: Content) -> some View {
+            if #available(iOS 26, macOS 26, *) {
+                content
+                    .clipShape(Capsule())
+            } else {
+                content
+                    .clipShape(RoundedRectangle(cornerRadius: LayoutMetrics.cornerRadius))
+            }
+        }
+    }
+
     let text: String
     let color: Color
 
@@ -48,7 +61,7 @@ public struct TagView: View {
         .background(color
             .opacity(0.3)
             .background(.background))
-        .clipShape(RoundedRectangle(cornerRadius: LayoutMetrics.cornerRadius))
+        .modifier(TagClipShapeModifier())
         .fixedSize(horizontal: true, vertical: true)
     }
 
